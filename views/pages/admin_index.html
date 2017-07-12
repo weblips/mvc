@@ -8,6 +8,9 @@
             </b>
         </td>
         <td>
+            <?=($page_data['is_published']) ? 'Да' : 'Нет';?>
+        </td>
+        <td>
             <a href="/admin/pages/edit/<?=$page_data['id']?>"><button class="btn btn-sm btn-primary">Редактировать</button></a>
             <a href="/admin/pages/delete/<?=$page_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning">Удалить</button></a>
         </td>

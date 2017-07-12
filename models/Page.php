@@ -28,7 +28,41 @@ class Page extends Model {
                 ->limit(1)
                 ->get()
                 ->toArray();
-        return isset($alias[0]) ? $alias[0] : null ;
+        return isset($alias[0]) ? $alias[0] : null;
+    }
+
+    public function getById($id) {
+        $id = (int) $id;
+        $fild_pages = $this->db->table('pages')
+                ->where('id', $id)
+                ->limit(1)
+                ->get()
+                ->toArray();
+        return isset($fild_pages[0]) ? $fild_pages[0] : null;
+    }
+
+    public function save($data, $id = null) {
+        if (!isset($data['alias']) || !isset($data['title']) || !isset($data['content']))
+            return FALSE;
+        $is_published = isset($data['is_published']) ? 1 : 0;
+        if ($id) {
+            $res = $this->db->update('pages', array(
+                        'alias' => XSS($data['alias']),
+                        'title' => XSS($data['title']),
+                        'content' => XSS($data['content']),
+                        'is_published' => $is_published
+                    ))->where('id', $id)
+                    ->exec();
+        } else {
+            $res = $this->db->insert('pages', array(
+                'alias' => XSS($data['alias']),
+                'title' => XSS($data['title']),
+                'content' => XSS($data['content']),
+                'is_published' => $is_published
+            ));
+        }
+
+        return $res;
     }
 
 }

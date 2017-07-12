@@ -1,0 +1,84 @@
+
+<h1>CRUD</h1>
+<pre>
+$db = Db::getInstance(); 
+// Last sql
+ $db->getSQL();
+// $result = true / false
+</pre>
+<h3>SELECT</h3>
+<pre>
+$r = $db->table('pages')->select('id, alias')->get();
+// with limit
+$rows = $db->table('pages')->limit(1)->get();
+</pre>
+<h3>UPDATE</h3>
+<pre>
+//where field('alias') = Test3
+$db->update('pages',	array(
+		'alias' => 'Test5',
+		'title' => 'TestSimple5',
+		'content'	=> 'TestContents5'
+	                    ))->where('alias','Test3')->exec();
+//where id = 1
+$db->update('pages',	array(
+		'alias' => 'Test5',
+		'title' => 'TestSimple5',
+		'content'	=> 'TestContents5'
+	                    ))->where(1)->exec();
+// too where AND 
+$db->update('mytable',
+	[
+		'first_name' => 'Ali',
+		'last_name' => 'Hamdy',
+		'age'	=> 30
+	])->where(1)->where('age','>',20)->exec();
+// too where OR
+$db->update('mytable',
+	[
+		'first_name' => 'Ali',
+		'last_name' => 'Hamdy',
+		'age'	=> 30
+	])->where(1)->orWhere('age','>',20)->exec();
+</pre>
+<h3>DELATE</h3>
+<pre>
+    // Del table
+    $db->delete('mytable',1);
+    // with where
+    $db->delete('mytable')->where(1)->exec();
+</pre>
+<h3>GET TABLE</h3>
+<pre>
+    $rows = $db->table('mytable')->get();
+</pre>
+
+<h3>toArray</h3>
+<pre>
+   $users = $db->table("users")->get()->toArray();
+</pre>
+
+<h3>toJson</h3>
+<pre>
+   $users = $db->table("users")->get()->toJSON();
+echo $users;
+//echo $db->table("users")->get()->first();
+To print the first row at users table as JSON
+
+echo $db->table("users")->get()->last();
+To print the last row at users table as JSON
+
+echo $db->table("users")->get()->first()->first_name;
+To print the first name of the first user, you can also do it like this :
+
+$first_user = $db->table("users")->get()->first();
+echo $first_user->first_name;
+</pre>
+<h3>toArray</h3>
+<pre>
+To print the result of Qget() as JSON just use json_encode($Qget_result); like this :
+
+$users = $db->table("users")->Qget();
+echo json_encode($users);
+</pre>
+

@@ -1,0 +1,12 @@
+<h3><?=__('page.contacts.contactus', '') ?></h3>
+<form action="#" method="post">
+    <input type="text" class="form-control" name="name" placeholder="Your name"><br>
+    <input type="email" class="form-control" name="email" placeholder="E-mail"><br>
+    <textarea name="message" class="form-control" placeholder="Your Message"></textarea><br>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" ><?=__('form.send', 'Отправить') ?></button><br>
+</form>
+
+<?php $db = Db::getInstance(); 
+$db->delete('pages')->where(4)->exec();
+
+?>

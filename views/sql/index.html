@@ -3,8 +3,9 @@
 <pre>
 $db = Db::getInstance(); 
 // Last sql
- $db->getSQL();
-// $result = true / false
+ $db->getSQL(); //debug
+ $db -> getCount (); 
+// $result = int(0 OR 1)
 </pre>
 <h3>SELECT</h3>
 <pre>
@@ -80,5 +81,20 @@ To print the result of Qget() as JSON just use json_encode($Qget_result); like t
 
 $users = $db->table("users")->Qget();
 echo json_encode($users);
+</pre>
+
+<h3>Обычный запрос </h3>
+<<pre>
+    <code>
+        $ Sql = " SELECT * FROM mytable WHERE id = ? " ;
+ $ Rows = $ db -> query ( $ sql , [ 1 ]); 
+SQL-запрос:
+
+  SELECT * FROM mytable WHERE id = 1 
+Если вы хотите полностью избавиться от всех DBCollection просто передайте true в качестве третьего параметра, например:
+
+  $ Sql = " SELECT * FROM mytable WHERE id = ? " ;
+ $ Rows = $ db -> query ( $ sql , [ 1 ], true ); 
+    </code>
 </pre>
 

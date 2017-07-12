@@ -10,3 +10,9 @@ define('VIEWS_PATH', ROOT.DS.'views');
 require_once ROOT.DS.'lib'.DS.'init.php';
 
 App::run($_SERVER['REQUEST_URI']);
+
+$arr = new Page();
+        $arr = $arr->getList(true);
+        echo('<pre>');
+print_r($arr);
+echo('</pre>');

@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * Description of app
@@ -13,13 +8,17 @@
  */
 class App {
 	protected static $router;
+        
+        public static $db;
 
-	public static function getRouter() {
+        public static function getRouter() {
 		return self::$router;
 	}
 
 	public static function run($uri) {
 		self::$router = new Router($uri);
+                
+                self::$db = Db::getInstance();
 
 		Lang::load(self::$router->getLanguage());
 

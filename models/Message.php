@@ -15,13 +15,21 @@ class Message extends Model {
                     ->exec();
         } else {
             $res = $this->db->insert('messages', array(
-                        'name' => XSS($data['name']),
-                        'email' => XSS($data['email']),
-                        'messages' => XSS($data['messages'])
-                    ));
+                'name' => XSS($data['name']),
+                'email' => XSS($data['email']),
+                'messages' => XSS($data['messages'])
+            ));
         }
-        
+
         return $res;
+    }
+
+    public function getList() {
+        $arr = $this->db->table('messages')
+                ->orderBy('id', 'DESC')
+                ->get()
+                ->toArray();
+        return $arr;
     }
 
 }

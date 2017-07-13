@@ -1,0 +1,20 @@
+<h3>Сообщения с контактной формы</h3>
+<br>
+<table class="table table-bordered" style="width: 100%">
+    <thead>
+        <tr class="bg-info">
+            <td style="width: 5%">#</td>
+            <td style="width: 10%">Имя</td>
+            <td style="width: 25%">Email</td>
+            <td style="width: 55%">Сообщение</td>
+        </tr>
+    </thead>
+    <?php foreach($data as $item): ?>
+    <tr>
+        <td><?=XSS($item['id'])?></td>
+        <td><?=XSS($item['name'])?></td>
+        <td><?=XSS($item['email'])?></td>
+        <td><?=XSS($item['messages'])?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>

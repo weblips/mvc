@@ -57,6 +57,10 @@ class Router {
     public static function redirect($location){
         header("Location: $location");
     }
+    
+    public static function redirectJs($location){
+        return "<script>document.location.href = '{$location}';</script>";
+    }
 
     public function getUri() {
         return $this->uri;
